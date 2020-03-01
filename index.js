@@ -5,6 +5,7 @@ function appendContentToBody(content) {
     const header = document.createElement('h1')
     header.innerText = output
     body.appendChild(header)
+    return content
 }
 
 function submitData(name, email) {
