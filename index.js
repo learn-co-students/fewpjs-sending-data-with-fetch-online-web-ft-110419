@@ -1,1 +1,39 @@
-// Add your code here
+const body = document.querySelector('body')
+
+function appendContentToBody(content) {
+    const output = content
+    const header = document.createElement('h1')
+    header.innerText = output
+    body.appendChild(header)
+}
+
+function submitData(name, email) {
+    const userName = name
+    const userEmail = email
+
+    let formData = {
+        name: userName,
+        email: userEmail
+    }
+
+    let configObj = {
+        method: "POST",
+        headers: {
+            "content-type": "application/json",
+            "accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+    }
+
+    return fetch("http://localhost:3000/users", configObj)
+        .then(function(response) {
+            return response.json()
+        })
+        .then(function(object) {
+            appendContentToBody(object.id);
+        })
+        .catch(function(error) {
+            appendContentToBody("Unauthorized Access")
+            console.log(error.message)
+        })
+}
