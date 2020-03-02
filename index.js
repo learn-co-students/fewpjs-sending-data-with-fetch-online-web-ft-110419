@@ -20,8 +20,8 @@ function submitData(name, email) {
     let configObj = {
         method: "POST",
         headers: {
-            "content-type": "application/json",
-            "accept": "application/json"
+            "Content-Type": "application/json",
+            "Accept": "application/json"
         },
         body: JSON.stringify(formData)
     }
@@ -31,7 +31,7 @@ function submitData(name, email) {
             return response.json()
         })
         .then(function(object) {
-            appendContentToBody(object.id);
+            return appendContentToBody(object.id)
         })
         .catch(function(error) {
             appendContentToBody("Unauthorized Access")
